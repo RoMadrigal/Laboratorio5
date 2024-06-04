@@ -99,12 +99,44 @@ void eliminar_nodo(DoubleList* list, int data) {
 
 
 
+Node* buscar(DoubleList* list, int data) {
+    Node* current = list->head;
+    while (current != NULL && current->data != data) {
+        current = current->next;
+    }
+    return current;
+}
 
 
+void imprimir_lista_delante(DoubleList* list) {
+    Node* current = list->head;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
 
 
+void imprimir_lista_atras(DoubleList* list) {
+    Node* current = list->tail;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->prev;
+    }
+    printf("\n");
+}
 
 
-
+void liberar_lista(DoubleList* list) {
+    Node* current = list->head;
+    Node* next_node;
+    while (current != NULL) {
+        next_node = current->next;
+        free(current);
+        current = next_node;
+    }
+    free(list);
+}
 
 
