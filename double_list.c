@@ -42,21 +42,21 @@ void insertar_en_final(DoubleList* list, int data) {
 
 
 void insertar_en_posicion(DoubleList* list, int data, int posicion) {
-    if (position == 0) {
-        insert_at_beginning(list, data);
+    if (posicion == 0) {
+        insertar_en_inicio(list, data);
         return;
     }
 
 
 
     Node* current = list->head;
-    for (int i = 0; i < position - 1 && current != NULL; i++) {
+    for (int i = 0; i < posicion - 1 && current != NULL; i++) {
         current = current->next;
     }
 
 
     if (current == NULL || current->next == NULL) {
-        insert_at_end(list, data);
+        insertar_en_final(list, data);
     } else {
         Node* new_node = (Node*)malloc(sizeof(Node));
         new_node->data = data;
