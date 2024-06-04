@@ -49,6 +49,55 @@ void insertar_en_posicion(DoubleList* list, int data, int posicion) {
 
 
 
+    Node* current = list->head;
+    for (int i = 0; i < position - 1 && current != NULL; i++) {
+        current = current->next;
+    }
+
+
+    if (current == NULL || current->next == NULL) {
+        insert_at_end(list, data);
+    } else {
+        Node* new_node = (Node*)malloc(sizeof(Node));
+        new_node->data = data;
+        new_node->next = current->next;
+        new_node->prev = current;
+        current->next->prev = new_node;
+        current->next = new_node;
+    }
+}
+
+
+void eliminar_nodo(DoubleList* list, int data) {
+    Node* current = list->head;
+    while (current != NULL && current->data != data) {
+        current = current->next;
+    }
+
+
+    if (current == NULL) {
+        return;
+    }
+
+
+    if (current->prev != NULL) {
+        current->prev->next = current->next;
+    } else {
+        list->head = current->next;
+    }
+
+
+    if (current->next != NULL) {
+        current->next->prev = current->prev;
+    } else {
+        list->tail = current->prev;
+    }
+
+
+    free(current);
+}
+
+
 
 
 
